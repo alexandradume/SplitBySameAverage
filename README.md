@@ -13,5 +13,8 @@ A[i] will be in the range of [0, 10000].
 
 
 Solution:
-We need to split A into B and C. Considering that B should have the same mean as A, sumOfB * lengthB = sumOfA * lengthA, so sumOfB is an integer. For this fact we can optimize our search, we cannot find a valid solution if sumOfA * lengthB % lengthA is not equal to 0.
-The check method recursively tries to see if we can create with the values we have in A sumOfB. If so, check returns true otherwise false.
+We need to split A into B and C. Considering that B should have the same mean as A, sumOfB * lengthB = sumOfC * lengthC, so sumOfB is an integer. For this fact we can optimize our search, we cannot find a valid solution if sumOfB * lengthC % lengthB is not equal to 0.
+We asume that A is the smaller array.
+We know that
+sumOfA/n = sumOfB/k=sumOfC/(n-k) => we `have chance to split the array only if somOfA*k%n == 0 (becuase sumOfB is integer).
+We will generate after that all the possible combination sum of k numbers from the array. If totalSum * k / n, exists in the kth combination sum hashset than method returns true, otherwise returns false. 
