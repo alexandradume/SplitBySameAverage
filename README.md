@@ -1,4 +1,5 @@
 # SplitBySameAverage
+Problem:
 In a given integer array A, we must move every element of A to either list B or list C. (B and C initially start empty.)  
 Return true if and only if after such a move, it is possible that the average value of B is equal to the average value of C, and B and C are both non-empty.
 Example:
@@ -12,10 +13,12 @@ The length of A will be in the range [1, 30].
 A[i] will be in the range of [0, 10000].
 
 Solution:
-We need to split A into B and C. Considering that B should have the same mean as A, sumOfB * lengthB = sumOfC * lengthC, so sumOfB is an integer. For this fact we can optimize our search, we cannot find a valid solution if sumOfB * lengthC % lengthB is not equal to 0.
 
-We asume that A is the smaller array.
+We assume that B is the smaller array.
 
-We know that:
-sumOfA/lengthOfA = sumOfB/lengthOfB = sumOfC/lengthOfC => we `have chance to split the array only if somOfA * lengthOfB % lengthOfA = 0 (because sumOfB is integer).
-We will generate after that all the possible combination sum of lengthOfB numbers from the array. If totalSum * lengthOfB / lengthOfA, exists in the lengthOfB th combination sum hashset than method returns true, otherwise returns false. 
+We know that for an array that have the propriety we search for that:
+sumOfA/lengthOfA = sumOfB/lengthOfB = sumOfC/lengthOfC => 
+we `have chance to split the array only if sumOfA * lengthOfB % lengthOfA = 0 (because sumOfB is integer). The algorithm performs early pruning to optimize the solution. So, if we do not find lengthOfB ( between 1 and lengthOfA/2) for which sumOfA * lengthOfB % lengthOfA is equal to 0, our array do not have this propriety.
+
+We generate all possible combination sum of lengthOfB numbers from the array using dynamic programming. If totalSum * lengthOfB / lengthOfA, exists in the lengthOfB th combination sum hashset than method returns true, otherwise returns false. 
+ 
