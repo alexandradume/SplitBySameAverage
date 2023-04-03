@@ -2,7 +2,7 @@
 
 class Solution(object):
     def splitArraySameAverage(self, A):
-        # Assume that A is the smaller array
+        # Assume that B is the smaller array
         lengthOfA= len(A)
         lengthOfB= int(lengthOfA / 2)
         totalSum = sum(A)
